@@ -1,0 +1,50 @@
+//@use '@angular/material' as mat;
+
+@import "assets/styles/forms";
+/* styles.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-dark: #04171C;
+  --primary-light: #0A2A32;
+  --accent: #1E5A6B;
+  --text-blue: rgba(149, 227, 250, 0.8);
+  --text-blue-light: rgba(149, 227, 250, 1);
+  --text-light: #FFFFFF;
+  --text-dark: #04171C;
+  --text-secondary: #6C7A7E;
+  --border: #E2E8F0;
+  --bg-light: #F8FAFC;
+  --bg-white: #FFFFFF;
+  --font-sans: "IBM Plex Sans", sans-serif;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family:  var(--font-sans);
+  font-weight: 400;
+  background: var(--primary-dark);
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+
+

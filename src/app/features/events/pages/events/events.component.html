@@ -1,0 +1,185 @@
+<div class="home">
+
+  <!-- ФИЛЬТРЫ -->
+  <form [formGroup]="form" class="filters">
+
+    <div class="row">
+      <mat-form-field appearance="fill" class="custom-field">
+        <mat-label>Регион</mat-label>
+        <mat-select formControlName="region">
+          <mat-option value="">Все</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill"  class="custom-field">
+        <mat-label>Оружие</mat-label>
+        <mat-select formControlName="weapon">
+          <mat-option value="">Любое</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill"  class="custom-field">
+        <mat-label>Пол</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="">Любой</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill"  class="custom-field">
+        <mat-label>Возраст</mat-label>
+        <mat-select formControlName="age">
+          <mat-option value="">Любой</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill"  class="custom-field">
+        <mat-label>Платно/бесплатно</mat-label>
+        <mat-select formControlName="paid">
+          <mat-option value="">Любое</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill"  class="custom-field">
+        <mat-label>Серия</mat-label>
+        <input matInput formControlName="series" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="custom-field date-field">
+        <mat-label>Дата с</mat-label>
+        <input matInput formControlName="dateFrom" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="custom-field date-field">
+        <mat-label>Дата по</mat-label>
+        <input matInput formControlName="dateTo" />
+      </mat-form-field>
+
+    </div>
+
+    <div class="row search-row">
+
+      <mat-form-field appearance="fill" class="search custom-field">
+        <mat-label>Название</mat-label>
+
+        <input matInput formControlName="name" />
+
+        <button
+          mat-icon-button
+          matSuffix
+          class="search-icon"
+          tabindex="-1"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-button type="button" (click)="reset()" class="reset">
+        <mat-icon>close</mat-icon>
+        Сбросить фильтр
+      </button>
+
+    </div>
+  </form>
+
+  <!-- ПЕРЕКЛЮЧЕНИЕ ВИДА -->
+<!--  <div class="view-toggle">-->
+<!--    <span class="label">Показывать списком</span>-->
+
+<!--    <button class="toggle" type="button"  [class.active]="isList"-->
+<!--            (click)="isList = !isList">-->
+<!--    <span class="track">-->
+<!--      <span class="thumb"></span>-->
+<!--    </span>-->
+<!--    </button>-->
+<!--  </div>-->
+
+  <div class="view-toggle">
+    <span>Показывать списком</span>
+
+    <button class="toggle" type="button">
+      <span class="track">
+        <span class="thumb"></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- ТАБЛИЦА -->
+  @if (isLoading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Загрузка событий...</p>
+    </div>
+  }
+  @if (!isLoading()) {
+
+    @if (groupedEvents().size === 0) {
+      <div class="empty-state">
+        <p>События не найдены</p>
+      </div>
+    } @else {
+      <div class="table">
+        <div class="table-header">
+          <div>Регион</div>
+          <div>Название</div>
+          <div>Пол</div>
+          <div>Оружие</div>
+          <div>Возраст</div>
+          <div>Тип</div>
+        </div>
+      </div>
+      @for (group of groupedEvents() | keyvalue; track group.key) {
+        <div class="date">{{ group.key }}</div>
+        @for (event of group.value; track event.id) {
+          <div class="row-item">
+            <div>{{ event.region }}</div>
+            <div>{{ event.name }}</div>
+            <div>{{ event.gender }}</div>
+            <div>{{ event.weapon }}</div>
+            <div>{{ event.age }}</div>
+            <div>{{ event.type }}</div>
+          </div>
+        }
+      }
+    }
+
+
+
+<!--          @for (event of events(); track event.event_id) {-->
+
+<!--          }-->
+<!--          <div class="date">12 май 2025</div>-->
+
+<!--          <div class="row-item">-->
+<!--            <div>СПБ</div>-->
+<!--            <div>Первенство России среди кадетов</div>-->
+<!--            <div>М</div>-->
+<!--            <div>Шпага</div>-->
+<!--            <div>Взрослые</div>-->
+<!--            <div>Личные</div>-->
+<!--          </div>-->
+
+<!--          <div class="row-item">-->
+<!--            <div>СПБ</div>-->
+<!--            <div>Первенство России среди юниоров</div>-->
+<!--            <div>М</div>-->
+<!--            <div>Шпага</div>-->
+<!--            <div>Ветераны</div>-->
+<!--            <div>Личные</div>-->
+<!--          </div>-->
+
+<!--          <div class="date">14 май 2025</div>-->
+
+<!--          <div class="row-item">-->
+<!--            <div>СПБ</div>-->
+<!--            <div>Первенство Приволжского ФО</div>-->
+<!--            <div>Ж</div>-->
+<!--            <div>Рапира</div>-->
+<!--            <div>Взрослые</div>-->
+<!--            <div>Командные</div>-->
+<!--          </div>-->
+<!--        </div>-->
+    }
+<!--  }-->
+
+
+</div>

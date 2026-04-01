@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 70px;
+
+  .menu {
+    display: flex;
+    gap: 30px;
+    margin-left: 35px;
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      color: var(--text-blue);
+      &.active {
+        color: var(--text-light);
+      }
+
+      &:hover {
+        color: var(--text-light);
+      }
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .logo-link {
+      height: 38px;
+    }
+  }
+
+  .user {
+    margin-left: auto;
+  }
+}
+
+
+

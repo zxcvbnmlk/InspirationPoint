@@ -43,6 +43,8 @@ cd InspirationPoint
 npm install
 ng serve
 ```
+project link:
+http://localhost:4200/
 
 Дополнения:
 - в запросе событий `/restapi/events`  не передается регион 
